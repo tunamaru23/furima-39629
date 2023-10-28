@@ -18,17 +18,17 @@
 
 ## items テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| name           | string     | null: false                    |
-| explanation    | string     | null: false                    |
-| category       | integer    | null: false                    |
-| condition      | integer    | null: false                    |
-| charge         | integer    | null: false                    |
-| region         | integer    | null: false                    |
-| number_of_days | integer    | null: false                    |
-| price          | integer    | null: false                    |
-| user           | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| name              | string     | null: false                    |
+| explanation       | string     | null: false                    |
+| category_id       | integer    | null: false                    |
+| condition_id      | integer    | null: false                    |
+| charge_id         | integer    | null: false                    |
+| region_id         | integer    | null: false                    |
+| number_of_days_id | integer    | null: false                    |
+| price             | integer    | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
 ### Association
 
