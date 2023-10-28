@@ -15,7 +15,6 @@
 
 - has_many :items
 - has_many :purchase_records
-- has_one :shipping
 
 ## items テーブル
 
