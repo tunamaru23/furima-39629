@@ -20,7 +20,6 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| image          | string     | null: false                    |
 | name           | string     | null: false                    |
 | explanation    | string     | null: false                    |
 | category       | integer    | null: false                    |
