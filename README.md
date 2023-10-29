@@ -21,7 +21,7 @@
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | name              | string     | null: false                    |
-| explanation       | string     | null: false                    |
+| explanation       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | condition_id      | integer    | null: false                    |
 | charge_id         | integer    | null: false                    |
