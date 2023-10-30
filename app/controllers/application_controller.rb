@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
   end
+<<<<<<< Updated upstream
 
   
   private
@@ -16,3 +17,6 @@ class ApplicationController < ActionController::Base
                                       keys: [:nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birth_date])
   end
 end
+=======
+end
+>>>>>>> Stashed changes
