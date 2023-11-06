@@ -64,7 +64,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが大文字では登録できない' do
-        @item.price = '777.7'
+        @item.price = '７７７'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be an integer')
       end
