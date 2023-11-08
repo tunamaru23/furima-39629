@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_items, only: [:edit, :show, :update]
   skip_before_action :authenticate_user!, only: [:index]
 
@@ -25,10 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless user_signed_in?
-      redirect_to new_user_session_path
-      return
-    end
     return if current_user == @item.user
 
     redirect_to root_path
@@ -50,7 +46,8 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :explanation, :category_id, :condition_id,
-              :region_id, :number_of_day_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :explanation, :category_id, :condition_id, :charge_id, :region_id,
+                                :number_of_day_id, :price, :image).merge(user_id: current_user.id)
   end
+
 end
