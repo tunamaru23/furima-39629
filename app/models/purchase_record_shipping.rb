@@ -8,7 +8,7 @@ class PurchaseRecordShipping
     validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'は市町村区を記入してください' }
     validates :house_number, presence: { message: 'は番地を記入してください' }
     validates :telephone, format: { with: /\A[0-9]{10,11}\z/, message: 'は数字のみかつ10桁以上11桁以下の電話番号を入力してください' }
-    validates :token, presence: true
+    validates :token
     validates :user_id
     validates :item_id
   end

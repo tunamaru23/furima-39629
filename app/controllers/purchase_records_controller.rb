@@ -41,8 +41,8 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def already_purchase
-    return unless user_signed_in? && (@item.purchase_record.present? || current_user == @item.user)
-
+    return unless @item.purchase_record.present? || current_user == @item.user
+  
     redirect_to root_path
   end
 

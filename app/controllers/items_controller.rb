@@ -25,14 +25,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
-      if current_user == @item.user && @item.purchase_record.blank?
-        # ログイン済みユーザーで、出品者でかつ売れていない場合、編集ページにアクセスを許可
-      else
-        redirect_to root_path # 上記条件を満たさない場合、ホーム画面にリダイレクト
-      end
+    if current_user == @item.user && @item.purchase_record.blank?
+      # ログイン済みユーザーで、出品者でかつ売れていない場合、編集ページにアクセスを許可
     else
-      redirect_to new_user_session_path # ログインしていない場合、ログインページにリダイレクト
+      redirect_to root_path # 上記条件を満たさない場合、ホーム画面にリダイレクト
     end
   end
 
