@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @items = Item.order(created_at: :desc)
+    @items = Item.all.order(created_at: :desc)
   end
 
   def show
@@ -25,10 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return if current_user == @item.user
-
-    redirect_to root_path
-    nil
+    if current_user == @item.user && @item.purchase_record.blank?
+      # ログイン済みユーザーで、出品者でかつ売れていない場合、編集ページにアクセスを許可
+    else
+      redirect_to root_path # 上記条件を満たさない場合、ホーム画面にリダイレクト
+    end
   end
 
   def update
@@ -43,9 +44,9 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @item.destroy if @item.user == current_user
     else
-      redirect_to new_user_session_path
+      redirect_to new_user_session_path # 未ログインユーザーはログインページへ飛ばす
     end
-    redirect_to root_path
+    redirect_to root_path # itemの出品者でなければ削除させずにホーム画面へ飛ばす
   end
 
   private
@@ -56,7 +57,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :explanation, :category_id, :condition_id, :charge_id, :region_id,
-                                :number_of_day_id, :price, :image).merge(user_id: current_user.id)
+                                 :number_of_day_id, :price, :image).merge(user_id: current_user.id)
   end
-
 end

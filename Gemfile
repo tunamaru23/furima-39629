@@ -58,6 +58,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'rubocop', require: false
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -74,10 +75,6 @@ group :test do
   gem 'webdrivers'
 end
 
-group :development do
-  gem 'rubocop', require: false
-end
-
 group :production do
   gem 'pg'
 end
@@ -86,7 +83,8 @@ gem 'devise'
 gem 'pry-rails'
 
 gem 'active_hash'
+gem 'gon'
+gem 'payjp'
 
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
-
