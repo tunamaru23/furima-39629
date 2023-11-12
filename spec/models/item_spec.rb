@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  before do # 先にデータを入れる。 factoriesのusers.rbを参照する。
-    @item = FactoryBot.build(:item)
+  before do
+    user = FactoryBot.create(:user)  # Create a user
+    @item = FactoryBot.build(:item, user: user)  # Associate the user with the item
   end
 
   describe '商品新規登録' do
@@ -66,7 +67,7 @@ RSpec.describe Item, type: :model do
       it 'priceが大文字では登録できない' do
         @item.price = '７７７'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be an integer')
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceが299以下だと登録できない' do

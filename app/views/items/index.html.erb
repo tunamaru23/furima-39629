@@ -127,27 +127,17 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
+    
       <% @items.each do |item| %>
       <li class='list'>
-
-
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
-        <% if item.image.attached? %>
-         <%= link_to item_path(item.id), method: :get do %>
-          <%= image_tag(item.image, alt: "リンク切れ", class: "item-img") %>
-         <% end %>
-        <% else %>
-         <%= link_to item_path(item.id), method: :get do %>
-            <%= image_tag("no_image.png", alt: "リンク切れ", class: "item-img") %>
-          <% end %>
-        <% end %>
-
+          <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+        <% if item.purchase_record.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-
-
+        <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -161,31 +151,30 @@
             </div>
           </div>
         </div>
-
+        <% end %>
       </li>
-      <% end %>
-
-
-      <% if @items.empty? %>
-        <li class='list'>
-          <%= link_to '#' do %>
-          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              商品を出品してね！
-            </h3>
-            <div class='item-price'>
-              <span>99999999円<br>(税込み)</span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
-              </div>
+      
+      <% if @items.blank? %>
+      <li class='list'>
+        <%= link_to '#' do %>
+        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+          <div class='item-price'>
+            <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
             </div>
           </div>
-          <% end %>
-        </li>
+        </div>
+        <% end %>
+      </li>
       <% end %>
-
+    <% end %>
+      
     </ul>
   </div>
   <%# /商品一覧 %>
